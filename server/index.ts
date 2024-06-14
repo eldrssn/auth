@@ -9,9 +9,9 @@ const app = express();
 const port = 5001;
 
 const corsOptions = {
-  origin: 'http://localhost:5173', // Разрешить запросы только с этого домена
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Разрешенные методы
-  allowedHeaders: ['Content-Type', 'Authorization'], // Разрешенные заголовки
+  origin: 'http://localhost:5173',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
 app.use(cors());
@@ -25,7 +25,6 @@ const pool = new Pool({
   port: 5432,
 });
 
-// Регистрация
 app.post('/register', async (req, res) => {
   const { firstName, lastName, gender, birthYear, email, password } = req.body;
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -43,7 +42,6 @@ app.post('/register', async (req, res) => {
   }
 });
 
-// Авторизация
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -74,10 +72,8 @@ app.post('/login', async (req, res) => {
 
 interface JwtPayload {
   userId: string;
-  // Другие поля, которые могут присутствовать в вашем JWT токене
 }
 
-// Получение данных пользователя
 app.get('/profile', (req, res) => {
   const token = req.headers['authorization']?.split(' ')[1];
 
