@@ -14,9 +14,9 @@ const Login: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const data = await login(form.email, form.password);
+      const data = await login(form.email, form.password); 
       localStorage.setItem('token', data.token);
-      window.location.href = '/profile';
+      window.location.href = `/profile/${data.id}`;
     } catch (error: any) {
       alert(error.message);
     }

@@ -14,7 +14,7 @@ const App: React.FC = () => {
         <Route path="/" element={token ? <Profile /> : <Register />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/:id" element={<Profile />} />
       </Routes>
     </Router>
   );
